@@ -6,6 +6,8 @@
 	<meta name="keywords" content="<?php echo $meta['keyword']?>" />
 	<meta name="description" content="<?php echo $meta['desc']?>" />
 	<script src="/static/js/jquery.js"></script>
+	
+	<?php echo implode("\n",$addon_header);?>
 </head>
 <body>
 <?php
@@ -13,5 +15,6 @@
 	$this->load->view($this->uri->slash_segment(1).$this->uri->segment(2).'_layout');
 	$this->load->view('common/footer');
 ?>
+<?php echo implode("\n",$addon_footer);?>
 </body>
 </html>
