@@ -220,7 +220,7 @@ $config['cache_path'] = '';
 | Plugin Directory Path
 |--------------------------------------------------------------------------
 */
-$config['plugin_path'] = BASEPATH.'/plugins';
+$config['plugin_path'] = FCPATH.'plugins';
 
 /*
 |--------------------------------------------------------------------------

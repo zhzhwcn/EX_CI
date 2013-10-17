@@ -37,8 +37,6 @@ class Admin extends EX_Controller {
         $this->form_validation->set_rules('username', 'username', 'required');
         $this->form_validation->set_rules('password', 'uassword', 'required');
         if ($this->form_validation->run() == FALSE || $this->Admin_model->check_login() == false){
-            //print_r($this->form_validation->_error_messages);
-            //exit;
             show_error(validation_errors(),'200','Error');
         } else {
             redirect('admin/index');
@@ -58,7 +56,7 @@ class Admin extends EX_Controller {
      */
     public function plugin_list()
     {
-        
+        $this->data['plugins'] = $this->Admin_model->get_plugin_list();
     }
 }
 
