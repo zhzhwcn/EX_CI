@@ -80,4 +80,24 @@ class Admin_model extends CI_Model
         }
         return $plugins;
     }
+    
+    /**
+     * save plugin config
+     */
+    public function save_plugin($plugin_name = '')
+    {
+        if(empty($plugin_name)){
+            return false;
+        }
+        $formdata = $this->input->post();
+        $formdata['plugin_conf'] = serialize($formdata['config']);
+        unset($formdata['config']);
+        $num = $this->db->select('plugin_id')->from('plugins')->where('plugin_name',$plugin_name)->get()->num_rows();
+        if($num){
+            $this->db->update('plugins',$formdata,array('plugin_name'=>$plugin_name));
+        } else {
+            $formdata['plugin_name'] = $plugin_name;
+            $this->db->insert('plugins',$formdata);
+        }
+    }
 }

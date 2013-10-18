@@ -58,6 +58,36 @@ class Admin extends EX_Controller {
     {
         $this->data['plugins'] = $this->Admin_model->get_plugin_list();
     }
+    
+    /**
+     * Plugin Operation Page
+     * @param $action Opt type etc Install Config Uninstall
+     */
+    public function plugin_opt($plugin_name = '',$action = '')
+    {
+        if(empty($plugin_name)){
+            redirect('admin/plugin_list');
+        }
+        switch($action){
+            case 'uninstall':{
+                
+            }
+            case 'config':
+            case 'install':
+            default:{
+                $this->data['plugin'] = load_plugin($plugin_name);
+            }
+        }
+    }
+    
+    /**
+     * save plugin config to db
+     */
+    public function plugin_save($plugin_name = '')
+    {
+        $this->Admin_model->save_plugin($plugin_name);
+        redirect('admin/plugin_list');
+    }
 }
 
 /* End of file admin.php */
