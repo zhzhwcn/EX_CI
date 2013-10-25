@@ -15,6 +15,7 @@ $lang['admin_label_plugin_status'] = 'Status';
 $lang['admin_label_plugin_opt'] = 'Opt.';
 $lang['admin_label_plugin_conf'] = 'Configure';
 $lang['admin_label_plugin_install'] = 'Install';
+$lang['admin_label_plugin_uninstall'] = 'Uninstall';
 $lang['admin_label_plugin_load_order'] = 'Load Order';
 
 /* End of file migration_lang.php */

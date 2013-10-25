@@ -70,7 +70,8 @@ class Admin extends EX_Controller {
         }
         switch($action){
             case 'uninstall':{
-                
+                $this->Admin_model->uninstall_plugin($plugin_name);
+				redirect('admin/plugin_list');
             }
             case 'config':
             case 'install':

@@ -62,6 +62,7 @@
 		<div class="form-group">
 			<div class="col-sm-offset-2 col-sm-10">
 				<button type="submit" class="btn btn-primary"><?php echo lang('admin_label_submit')?></button>
+				<a href="<?php echo site_url('admin/plugin_opt/'.$plugin->name.'/uninstall');?>" class="btn"><?php echo lang('admin_label_plugin_uninstall')?></a>
 			</div>
         </div>
 	</form>

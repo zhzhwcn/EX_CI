@@ -15,6 +15,7 @@ class Pre_ctrler{
 		log_message('debug','pre_controller function init_plugins begin running');
 		$CI =& get_instance();
 		$CI->disabled_views = array();
+		$CI->views_override = array();
 		$CI->plugins = array();
 		$CI->plugin_hooks = array();
 		$CI->plugin_urls = array();

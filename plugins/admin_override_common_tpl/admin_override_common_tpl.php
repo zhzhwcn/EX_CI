@@ -14,7 +14,7 @@ class admin_override_common_tpl {
 	 */
 	public function install()
 	{
-		
+		copy_directory(dirname(__FILE__).'/views',APPPATH.'views/plugin/'.$this->name);
 	}
 	
 	/**
@@ -30,6 +30,6 @@ class admin_override_common_tpl {
 	 */
 	public function uninstall()
 	{
-		
+		delete_files(APPPATH.'views/plugin/'.$this->name);
 	}
 }

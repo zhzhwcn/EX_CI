@@ -98,6 +98,18 @@ class Admin_model extends CI_Model
         } else {
             $formdata['plugin_name'] = $plugin_name;
             $this->db->insert('plugins',$formdata);
+			$plugin = load_plugin($plugin_name);
+			$plugin->install();
         }
     }
+	
+	public function uninstall_plugin($plugin_name = '')
+	{
+		if(empty($plugin_name)){
+            return false;
+        }
+		$plugin = load_plugin($plugin_name);
+		$plugin->uninstall();
+		$this->db->delete('plugins',array('plugin_name'=>$plugin_name));
+	}
 }
