@@ -29,20 +29,28 @@ function plugin_run_hook($hook = '',$argv = array())
 	
 }
 
+function plugin_add_override_view($org_view = '' , $new_view = '')
+{
+    $CI =& get_instance();
+    $CI->views_override[$org_view] = $new_view;
+}
+
 function load_plugin($plugin_name = '')
 {
     if(empty($plugin_name)){
         return null;
     }
+    log_message('debug','begin to load plugin '.$plugin_name);
     $CI =& get_instance();
     $plugin_class_file = $CI->config->item('plugin_path').'/'.$plugin_name.'/'.$plugin_name.'.php';
     $plugin_desc_file = $CI->config->item('plugin_path').'/'.$plugin_name.'/desc';
     if(file_exists($plugin_class_file)){
-        include($plugin_class_file);
+        include_once($plugin_class_file);
         $plugin = new $plugin_name();
         $plugin->desc = read_file($plugin_desc_file);
     } else {
         $CI->db->update('plugins',array('enabled'=>0),array('plugin_name'=>$plugin_name));
+        log_message('debug','plugin file missed disable this and skip load');
         return null;
     }
     
@@ -60,5 +68,6 @@ function load_plugin($plugin_name = '')
         $plugin->enabled = 0;
         $plugin->load_order = 100;
     }
+    log_message('debug',$plugin_name.'plugins loaded');
     return $plugin;
 }

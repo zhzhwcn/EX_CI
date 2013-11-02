@@ -38,6 +38,8 @@
 |
 */
 
+$route['fffffffffff/(:any)'] = 'admin/$1/$2/$3/$4/$5/$6';
+
 $route['default_controller'] = "welcome";
 $route['404_override'] = '';
 

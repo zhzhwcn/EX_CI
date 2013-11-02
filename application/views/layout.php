@@ -12,7 +12,7 @@
 <body>
 <?php
 	$this->load->view('common/header');
-	$this->load->view($this->uri->slash_segment(1).$this->uri->segment(2).'_layout');
+	$this->load->view($this->uri->slash_rsegment(1).$this->uri->segment(2).'_layout');
 	$this->load->view('common/footer');
 ?>
 <?php echo implode("\n",$addon_footer);?>

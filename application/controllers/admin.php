@@ -11,6 +11,12 @@ class Admin extends EX_Controller {
 	    $this->data['addon_header'][] = '<script src="/static/bootstrap/js/bootstrap.js"></script>';
         $this->load->model('Admin_model');
         $this->load->language('admin');
+        if($this->uri->segment(1) == 'admin'){
+            redirect('');
+        }
+        if(!$this->session->userdata('is_admin_login') && $this->uri->segment(2) != 'login'){
+            redirect('admin/login');
+        }
     }
     
     /**
@@ -48,7 +54,7 @@ class Admin extends EX_Controller {
      */
     public function logout()
     {
-        
+        $this->session->destroy();
     }
     
     /**

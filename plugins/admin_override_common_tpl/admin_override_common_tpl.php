@@ -14,7 +14,7 @@ class admin_override_common_tpl {
 	 */
 	public function install()
 	{
-		copy_directory(dirname(__FILE__).'/views',APPPATH.'views/plugin/'.$this->name);
+        copy_directory(dirname(__FILE__).'/views',FCPATH.APPPATH.'views/plugins/'.$this->name);
 	}
 	
 	/**
@@ -22,7 +22,8 @@ class admin_override_common_tpl {
 	 */
 	public function load()
 	{
-		
+		plugin_add_override_view('common/header','plugins/'.$this->name.'/admin_common_header');
+        plugin_add_override_view('common/footer','plugins/'.$this->name.'/admin_common_footer');
 	}
 	
 	/**
@@ -30,6 +31,6 @@ class admin_override_common_tpl {
 	 */
 	public function uninstall()
 	{
-		delete_files(APPPATH.'views/plugin/'.$this->name);
+		delete_files(APPPATH.'views/plugins/'.$this->name);
 	}
 }
