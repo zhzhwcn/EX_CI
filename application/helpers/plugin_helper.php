@@ -16,17 +16,26 @@
 
 function plugin_add_url($url = '',$class = null,$function = '')
 {
-	
+	$CI =& get_instance();
+    $CI->plugin_urls[$url] = array('class'=>$class,'function'=>$function);
 }
 
-function plugin_add_hook($hook = '',$class = null,$order = 100)
+function plugin_add_hook($hook = '',$class = null,$function = '',$order = 100)
 {
-	
+	$CI =& get_instance();
+    $CI->plugin_hooks[$hook][$order] = array('class'=>$class,'function'=>$function);
+    ksort($CI->plugin_hooks[$hook]);
 }
 
 function plugin_run_hook($hook = '',$argv = array())
 {
-	
+	$CI =& get_instance();
+    foreach($CI->plugin_hooks[$hook] as $hook_array){
+        try{
+            $argv = $hook_array['class']->$hook_array['function']($argv);
+        } catch(exception $e){}
+    }
+    return $argv;
 }
 
 function plugin_add_override_view($org_view = '' , $new_view = '')
